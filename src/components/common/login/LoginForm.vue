@@ -3,7 +3,7 @@
     <div class="login_box">
       <!-- 头像区域 -->
       <div class="box_avatar">
-        <img src="~assets/img/login/logo.png">
+        <img src="~assets/img/home/homeLogo.jpeg">
       </div>  
       <!-- 登陆的表单区域 -->
       <div class="login_form">
@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import { request } from "network/request.js"
+import { getLogin } from 'network/login.js'
 
 export default {
   name: 'LoginForm',
@@ -73,18 +73,13 @@ export default {
       // 登陆之前预验证(该验证函数会先对表单规则进行验证，然后把布尔类型验证结果返回，根据结果进行相关的操作)
       this.$refs['loginFormRef'].validate( async valid => {
         if( !valid ) return console.log('请正确输入登陆信息');
-        const res = await request({
-          url: '/login',
-          method: 'post',
-          params: {
+        const res = await getLogin({
             username: this.loginForm.username,
             password: this.loginForm.password
-          }
         })
         // $message是elementui在全局挂载的一个组件，类似于我之前自己封装的$toast，调用这个挂载的组件的方法让其显示和消失
         if(res.meta.status !== 200) return this.$message.error(res.meta.msg);
         this.$message.success(res.meta.msg)
-        console.log('查看下登陆成功返回的数据', res)
         // 登陆成功，保存token（jwt），这里需求是关闭网页就清空token，所以保存在sessionStorage中
         //  注意:实际开发中,一般根据当前账号的userid生成当前账号自己的token名,到时候退出的时候就删除对应的token
         window.sessionStorage.setItem('token', res.data.token)
@@ -99,7 +94,7 @@ export default {
 <style lang="less" scoped>
   .login_container {
     height: 100%;
-    background: #2b4b6b;
+    background: #545c64c7;
     position: relative;
     .login_box {
       width: 450px;

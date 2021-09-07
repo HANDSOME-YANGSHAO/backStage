@@ -3,3 +3,17 @@ html,body,#app {
   margin: 0;
   padding: 0;
 }
+
+/* 这个css文件是在全局引用的（main.js）可以在这里对一系列的样式做一些初始化 */
+.el-breadcrumb {
+  margin-bottom: 30px;
+}
+.el-card {
+  box-shadow: 0 1px 1px rgb(0, 0, 0, 0.15) !important;
+}
+.el-table {
+  margin-top: 15px
+}
+.el-pagination {
+  margin-top: 15px;
+}
