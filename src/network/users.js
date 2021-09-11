@@ -54,3 +54,13 @@ export function deleteUser(id) {
     method: 'delete'
   })
 }
+
+// 根据select组件选中的角色（roleId），为该用户分配特定的角色
+export function setRole(id, rid) {
+  return request({
+    url: `/users/${id}/role`,
+    method: 'put',
+    data: {rid: rid}
+  })
+}
+

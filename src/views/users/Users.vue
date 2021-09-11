@@ -27,13 +27,13 @@
         </el-col>
         <el-col :span="4">
           <el-button type="primary" @click="addDialogVisible = true"
-            >添加内容</el-button
+            >添加用户</el-button
           >
         </el-col>
       </el-row>
       <!-- table组件 -->
       <el-table stripe border :data="userList">
-        <el-table-column type="index" label="序号" width="80"></el-table-column>
+        <el-table-column type="index" label="序号" width="60px"></el-table-column>
         <el-table-column prop="username" label="姓名"> </el-table-column>
         <el-table-column prop="email" label="邮箱"> </el-table-column>
         <el-table-column prop="mobile" label="电话"> </el-table-column>
@@ -85,6 +85,7 @@
                 type="warning"
                 icon="el-icon-setting"
                 size="mini"
+                @click="showSetRoleDialog(scope.row)"
               ></el-button>
             </el-tooltip>
           </template>
@@ -92,7 +93,7 @@
       </el-table>
       <!-- 分页组件 -->
       <el-pagination
-        @size-change="handleSizeChange"
+        @size-change="handleSizeChange($event)"
         @current-change="handleCurrentChange"
         :current-page="queryInfo.pagenum"
         :page-sizes="[1, 2, 5, 8]"
@@ -137,7 +138,6 @@
         <el-button type="primary" @click="addUser">确 定</el-button>
       </span>
     </el-dialog>
-
     <!-- 编辑的对话窗 -->
     <el-dialog
       :close-on-click-modal="false"
@@ -168,6 +168,34 @@
         <el-button type="primary" @click="editUserInfo">确 定</el-button>
       </span>
     </el-dialog>
+    <!-- 分配角色的对话框 -->
+    <el-dialog
+      @close="setRoleDialogClose"
+      :close-on-click-modal="false"
+      title="分配角色"
+      :visible.sync="setRoleDialogVisible"
+      width="50%"
+    >
+      <div>
+        <p>用户名：{{this.userInfo.username}}</p>
+        <p>当前角色：{{this.userInfo.role_name}}</p>
+        <p>分配角色
+            <el-select v-model="selectedRoleId" placeholder="请选择角色">
+              <el-option
+                v-for="item in roleList"
+                :key="item.id"
+                :label="item.roleName"
+                :value="item.id">
+              </el-option>
+          </el-select>
+        </p>
+      </div>
+      <!-- 底部区域 -->
+      <span slot="footer">
+        <el-button @click="setRoleDialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="setRole">确 定</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
@@ -179,7 +207,9 @@ import {
   getUserById,
   editUserInfo,
   deleteUser,
+  setRole
 } from "network/users.js";
+import { getRoleList } from 'network/role.js'
 export default {
   name: "Users",
   data() {
@@ -238,6 +268,10 @@ export default {
       },
       editDialogVisible: false,
       editForm: {},
+      setRoleDialogVisible: false,
+      userInfo: {},
+      roleList: [],
+      selectedRoleId: ''
     };
   },
   created() {
@@ -262,6 +296,7 @@ export default {
 
     // 监听这个组件的当页数量变化，一旦变化了就让组件的页面参数发生变化，并获取最新得数据
     handleSizeChange(newSize) {
+      console.log(newSize)
       this.queryInfo.pagesize = newSize;
       this.getUsersList();
     },
@@ -324,6 +359,28 @@ export default {
       this.getUsersList();
       this.$message.success(res.meta.msg);
     },
+    // 打开设置角色的对话框
+    async showSetRoleDialog(userInfo) {
+      this.userInfo = userInfo
+      const res = await getRoleList();
+      if (res.meta.status !== 200) return this.$message.error(res.meta.msg); 
+      this.roleList = res.data
+      this.setRoleDialogVisible = true
+    },
+    // 点击确定，给用户分配角色
+    async setRole() {
+      if(!this.selectedRoleId) return this.$message.error('请选择要分配的角色！')
+      const res = await setRole(this.userInfo.id, this.selectedRoleId)
+      if (res.meta.status !== 200) return this.$message.error(res.meta.msg)
+      this.$message.success(res.meta.msg)
+      this.getUsersList()
+      this.setRoleDialogVisible = false
+    },
+    // 关闭分配角色对话框
+    setRoleDialogClose() {
+      this.selectedRoleId = ''
+      this.userInfo = ''
+    }
   },
 };
 </script>

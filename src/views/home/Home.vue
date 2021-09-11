@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <el-container>
+      
       <el-header>
         <div class="logo_box">
           <img src="~assets/img/home/homeLogo.jpeg" />
@@ -8,7 +9,9 @@
         </div>
         <el-button type="info" @click="logout">退出</el-button>
       </el-header>
+
       <el-container id="content">
+
         <el-aside :width="isCollapse ? '64px' : '200px'">
           <div class="toggle" @click="toggleCollapse">
             <i v-if="isCollapse" class="el-icon-s-unfold"></i>
@@ -44,10 +47,13 @@
             </el-submenu>
           </el-menu>
         </el-aside>
+
         <el-main>
           <router-view/>
         </el-main>
+
       </el-container>
+
     </el-container>
   </div>
 </template>
@@ -88,6 +94,7 @@ export default {
       // 清除当前账号的token，理论上应该是每个账号都有自己对应的token，然后清除也是清除当前账号的token
       // 清除当前账号比如会用window.sessionStorage.removeItem(),清除当前账号对应的token
       window.sessionStorage.clear()
+      this.$message.success('退出当前账号') 
       this.$router.push("/login")
     },
     async getMenuList() {

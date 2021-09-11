@@ -2,6 +2,7 @@ html,body,#app {
   height: 100vh;
   margin: 0;
   padding: 0;
+  min-width: 1000px;
 }
 
 /* 这个css文件是在全局引用的（main.js）可以在这里对一系列的样式做一些初始化 */
