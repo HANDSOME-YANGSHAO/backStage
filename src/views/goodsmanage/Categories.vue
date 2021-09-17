@@ -139,7 +139,7 @@ export default {
       queryInfo: {
         type: 3,
         pagenum: 1,
-        pagesize: 5
+        pagesize: 8
       },
       // 分类列表
       cateList: [],

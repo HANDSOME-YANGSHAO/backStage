@@ -1,6 +1,6 @@
 import { request } from "./request";
 
-// 根据id和参数类型获取静态参数还是动态参数列表
+// 根据当前分类id和参数类型获取静态参数还是动态参数列表
 export function getParamsList(id, sel) {
   return request({
     url: `categories/${id}/attributes`,
