@@ -5,9 +5,9 @@
       <el-header>
         <div class="logo_box">
           <img src="~assets/img/home/homeLogo.jpeg" />
-          <span>购物街后台管理系统</span>
+          <span>小李出品，不太精品的澄清石灰水後臺管理系統~</span>
         </div>
-        <el-button type="info" @click="logout">退出</el-button>
+        <el-button type="success" @click="logout">退出</el-button>
       </el-header>
 
       <el-container id="content">
@@ -18,7 +18,7 @@
             <i v-if="!isCollapse" class="el-icon-s-fold"></i>
           </div>
           <el-menu
-            background-color="#545c64"
+            background-color="rgb(116,191,98)"
             text-color="#fff"
             active-text-color="#409EFF"
             :unique-opened="true"
@@ -123,7 +123,8 @@ export default {
 .el-container {
   height: 100%;
   .el-header {
-    background-color: #42484e;
+    // background-color: #42484e;
+    background-color: rgb(175, 238, 159);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -142,7 +143,7 @@ export default {
     }
   }
   .el-aside {
-    background-color: #545c64;
+    background-color: rgb(116,191,98);
     .toggle {
       color: #fff;
       display: flex;

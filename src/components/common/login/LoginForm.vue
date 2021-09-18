@@ -94,7 +94,8 @@ export default {
 <style lang="less" scoped>
   .login_container {
     height: 100%;
-    background: #545c64c7;
+    background: url("~assets/img/login/bg6.jpg") no-repeat;
+    background-size:100% 100%;
     position: relative;
     .login_box {
       width: 450px;

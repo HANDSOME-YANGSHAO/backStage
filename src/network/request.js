@@ -52,8 +52,9 @@
 //第三种封装模式(最终选择)
 
 import axios from "axios";//导入axios框架
-
-
+// 导入进度条库和它的样式
+import NProcess from "nprogress" 
+import 'nprogress/nprogress.css'
 
 export function request(config){
   //1.定义axios实例 
@@ -65,6 +66,8 @@ export function request(config){
   //2.axios拦截器
       //2.1 请求拦截
   instance.interceptors.request.use(config => {
+    NProcess.start()
+    console.log("开发环境有console")
     if(window.sessionStorage.getItem('token')) {
       config.headers.Authorization = window.sessionStorage.getItem('token')
     }
@@ -76,6 +79,7 @@ export function request(config){
       //2.2响应拦截
   instance.interceptors.response.use(res => {
     // console.log(res,'响应拦截器');
+    NProcess.done()
     return res.data;
   },err => {
     console.log(err);
