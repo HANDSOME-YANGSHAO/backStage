@@ -6,6 +6,7 @@
 
 // webpack有两种配置方法，一种是configureWebpack特点是直接操作对象，第二种是chainWebpack特点是链式配置(这里两者都用到了，可见不会冲突最后会合并到一起)
 module.exports = {
+  publicPath: './',
   configureWebpack: {
     resolve: {
       alias: {
@@ -33,7 +34,6 @@ module.exports = {
       config.set('externals', {
         vue: 'Vue',
         'vue-router': 'VueRouter',
-        'vuex': 'Vuex',
         axios: 'axios',
         nprogress: 'NProgress',
         'vue-quill-editor': 'VueQuillEditor',

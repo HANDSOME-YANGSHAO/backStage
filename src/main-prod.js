@@ -8,6 +8,9 @@ import store from './store'
 import 'assets/css/global.css'
 // 导入第三方字体图标库
 import 'assets/fonts/iconfont.css'
+import TreeTable from 'vue-table-with-tree-grid'
+import VueQuillEditor from 'vue-quill-editor'
+
 
 Vue.config.productionTip = false
 
