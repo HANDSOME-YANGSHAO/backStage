@@ -54,6 +54,7 @@ export default {
 <style lang="less" scoped>
 #welcome {
   background: url(~assets/img/common/e.gif);
+  background-size:cover;
   position: relative;
   width: 100%;
   height: 100%;
