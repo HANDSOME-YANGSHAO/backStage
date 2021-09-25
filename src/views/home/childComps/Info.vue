@@ -16,7 +16,7 @@
         <span></span>
         <span></span>
         <span></span>
-        <span class="icon"><img src="~assets/img/home/微信.svg" alt=""></span>
+        <span class="icon"><img src="~assets/img/home/WECHAT.svg" alt=""></span>
       </div>
       <span class="text">Wechat</span>
     </a>
@@ -26,7 +26,7 @@
         <span></span>
         <span></span>
         <span></span>
-        <span class="icon"><img src="~assets/img/home/掘金.svg" alt=""></span>
+        <span class="icon"><img src="~assets/img/home/JUEJIN.svg" alt=""></span>
       </div>
       <span class="text">JUEJIN</span>
     </a>
@@ -36,7 +36,7 @@
         <span></span>
         <span></span>
         <span></span>
-        <span class="icon"><img src="~assets/img/home/商城.svg" alt=""></span>
+        <span class="icon"><img src="~assets/img/home/SHOP.svg" alt=""></span>
       </div>
       <span class="text">supermall</span>
     </a>
