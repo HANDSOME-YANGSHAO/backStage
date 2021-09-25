@@ -89,6 +89,14 @@ export default {
     // 故 此时点击(或者激活)二级菜单，就会跳转到路径为index的路由里面去
     this.activePath = window.sessionStorage.getItem('activePath')
   },
+  mounted() {
+    this.$notify({
+      title: '提示',
+      type: 'success',
+      message: '域名还在备案中，备案之后才能够申请SSL证书',
+      position: 'top-right'
+    });
+  },
   methods: {
     logout() {
       // 清除当前账号的token，理论上应该是每个账号都有自己对应的token，然后清除也是清除当前账号的token

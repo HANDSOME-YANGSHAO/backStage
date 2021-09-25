@@ -47,8 +47,8 @@ export default {
     return {
       // 定义了表单数据存储对象
       loginForm: {
-        username: '',
-        password: ''
+        username: 'admin',
+        password: '123456'
       },
       // 定义了表单数据验证规则对象
       loginFormRules: {
