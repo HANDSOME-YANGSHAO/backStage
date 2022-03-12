@@ -30,7 +30,7 @@
       </div>
       <span class="text">JUEJIN</span>
     </a>
-    <a href="http://101.34.32.63/supermall" target="_blank">
+    <a href="http://www.sqlhy.info/cuteMall/#/home" target="_blank">
       <div class="layer">
         <span></span>
         <span></span>
